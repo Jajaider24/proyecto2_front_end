@@ -1,15 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
+// src/routes/index.tsx
+import { Routes, Route } from "react-router-dom";
+import CustomerList from "../pages/Customer/CustomerList";
+import CustomerForm from "../pages/Customer/CustomerForm";
+import MainLayout from "../layouts/MainLayout";
 
-export default function AppRoutes() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        {/* Agrega más rutas según tus páginas */}
-      </Routes>
-    </Router>
-  );
-}
+export const AppRoutes = () => (
+  <MainLayout>
+    <Routes>
+      <Route path="/clientes" element={<CustomerList />} />
+      <Route path="/clientes/nuevo" element={<CustomerForm />} />
+      {/* Lo mismo para otras entidades */}
+    </Routes>
+  </MainLayout>
+);
