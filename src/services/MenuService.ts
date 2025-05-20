@@ -1,11 +1,13 @@
-// src/services/MenuService.ts
 import { Menu } from "../models/Menu";
-import axios from "axios";
+import { apiService } from "./apiService";
 
-const API_URL = "https://tuapi.com/api/customers";
+const API_URL = "menus";
 
-export const getMenus = () => axios.get<Menu[]>(API_URL);
-export const getMenuById = (id: number) => axios.get<Menu>(`${API_URL}/${id}`);
-export const createMenu = (data: Menu) => axios.post(API_URL, data);
-export const updateMenu = (id: number, data: Menu) => axios.put(`${API_URL}/${id}`, data);
-export const deleteShift = (id: number) => axios.delete(`${API_URL}/${id}`);
+export const getMenus = () => apiService.get<Menu[]>(API_URL);
+export const getMenuById = (id: number) =>
+  apiService.getById<Menu>(API_URL, id);
+export const createMenu = (data: Menu) =>
+  apiService.create<Menu>(API_URL, data);
+export const updateMenu = (id: number, data: Menu) =>
+  apiService.update<Menu>(API_URL, id, data);
+export const deleteMenu = (id: number) => apiService.delete(API_URL, id);

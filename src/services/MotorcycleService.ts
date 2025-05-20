@@ -1,11 +1,13 @@
-// src/services/MotorcycleService.ts
 import { Motorcycle } from "../models/Motorcycle";
-import axios from "axios";
+import { apiService } from "./apiService";
 
-const API_URL = "https://tuapi.com/api/customers";
+const API_URL = "motorcycles";
 
-export const getMotorcycles = () => axios.get<Motorcycle[]>(API_URL);
-export const getMotorcycleById = (id: number) => axios.get<Motorcycle>(`${API_URL}/${id}`);
-export const createMotorcycle = (data: Motorcycle) => axios.post(API_URL, data);
-export const updateMotorcycle = (id: number, data: Motorcycle) => axios.put(`${API_URL}/${id}`, data);
-export const deleteMotorcycle = (id: number) => axios.delete(`${API_URL}/${id}`);
+export const getMotorcycles = () => apiService.get<Motorcycle[]>(API_URL);
+export const getMotorcycleById = (id: number) =>
+  apiService.getById<Motorcycle>(API_URL, id);
+export const createMotorcycle = (data: Motorcycle) =>
+  apiService.create<Motorcycle>(API_URL, data);
+export const updateMotorcycle = (id: number, data: Motorcycle) =>
+  apiService.update<Motorcycle>(API_URL, id, data);
+export const deleteMotorcycle = (id: number) => apiService.delete(API_URL, id);

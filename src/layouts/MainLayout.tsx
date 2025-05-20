@@ -1,5 +1,5 @@
 // src/layouts/MainLayout.tsx
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -7,10 +7,15 @@ interface Props {
 }
 
 const MainLayout: React.FC<Props> = ({ children }) => {
+  const [user] = useState({ name: "Usuario Demo" });
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
-      <aside className="bg-blue-700 text-white w-full md:w-64 p-4">
+      <aside
+        className="bg-blue-700 text-white w-full md:w-64 p-4"
+        aria-label="Menú de navegación"
+      >
         <h2 className="text-2xl font-bold mb-4">MotoDomicilios</h2>
         <nav className="flex flex-col gap-2">
           <Link to="/" className="hover:bg-blue-600 p-2 rounded">
@@ -30,7 +35,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
         {/* Navbar superior */}
         <header className="bg-white shadow p-4 rounded mb-4 flex justify-between items-center">
           <span className="text-lg font-semibold">Panel de usuario</span>
-          <span className="text-sm text-gray-600">Bienvenido, usuario</span>
+          <span className="text-sm text-gray-600">Bienvenido, {user.name}</span>
         </header>
 
         {/* Contenido dinámico de la página */}

@@ -1,17 +1,32 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
+module.exports = {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("@tailwindcss/forms")],
+};
+
+// tailwind.config.js
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Escanea todos los archivos fuente
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
     extend: {
-      colors: {
-        primary: "#1E40AF", // azul personalizado opcional
-        secondary: "#FBBF24", // amarillo personalizado opcional
+      screens: {
+        'sm': '640px',   // Móviles
+        'md': '768px',   // Tablets
+        'lg': '1024px',  // Escritorio
+        'xl': '1280px',  // Pantallas grandes
+        '2xl': '1536px', // Pantallas muy grandes
       },
     },
   },
   plugins: [
-    require("@tailwindcss/forms"), // Mejora los formularios
+    require("@tailwindcss/forms"), // Si tienes formularios
   ],
 };
+
+

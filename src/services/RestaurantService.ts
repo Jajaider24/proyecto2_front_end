@@ -1,11 +1,13 @@
-// src/services/RestaurantService.ts
 import { Restaurant } from "../models/Restaurant";
-import axios from "axios";
+import { apiService } from "./apiService";
 
-const API_URL = "https://tuapi.com/api/customers";
+const API_URL = "restaurants";
 
-export const getRestaurants = () => axios.get<Restaurant[]>(API_URL);
-export const getRestaurantById = (id: number) => axios.get<Restaurant>(`${API_URL}/${id}`);
-export const createRestaurant = (data: Restaurant) => axios.post(API_URL, data);
-export const updateRestaurant = (id: number, data: Restaurant) => axios.put(`${API_URL}/${id}`, data);
-export const deleteRestaurant = (id: number) => axios.delete(`${API_URL}/${id}`);
+export const getRestaurants = () => apiService.get<Restaurant[]>(API_URL);
+export const getRestaurantById = (id: number) =>
+  apiService.getById<Restaurant>(API_URL, id);
+export const createRestaurant = (data: Restaurant) =>
+  apiService.create<Restaurant>(API_URL, data);
+export const updateRestaurant = (id: number, data: Restaurant) =>
+  apiService.update<Restaurant>(API_URL, id, data);
+export const deleteRestaurant = (id: number) => apiService.delete(API_URL, id);

@@ -1,23 +1,37 @@
-// src/services/CustomerService.ts
-import { Customer } from "../models/Customer";
 import axios from "axios";
+import type { Customer } from "../models/Customer";
 
-const API_URL = "https://tuapi.com/api/customers";
+// URL base del API (ajusta con tu URL de backend)
+const API_URL = "http://localhost:3000/customers";
 
-export const getCustomers = () => axios.get<Customer[]>(API_URL);
-export const getCustomerById = (id: number) =>
-  axios.get<Customer>(`${API_URL}/${id}`);
-export const createCustomer = (data: Customer) => axios.post(API_URL, data);
-export const updateCustomer = (id: number, data: Customer) =>
-  axios.put(`${API_URL}/${id}`, data);
-export const deleteCustomer = (id: number) => axios.delete(`${API_URL}/${id}`);
-
-
+// Obtener todos los clientes
 export const getAllCustomers = async (): Promise<Customer[]> => {
-  const res = await axios.get(API_URL);
-  return res.data;
+  const response = await axios.get<Customer[]>(API_URL);
+  return response.data;
 };
 
+// Obtener un cliente por su ID
+export const getCustomerById = async (id: number): Promise<Customer> => {
+  const response = await axios.get<Customer>(`${API_URL}/${id}`);
+  return response.data;
+};
+
+// Crear un nuevo cliente
+export const createCustomer = async (customer: Customer): Promise<Customer> => {
+  const response = await axios.post<Customer>(API_URL, customer);
+  return response.data;
+};
+
+// Actualizar un cliente
+export const updateCustomer = async (
+  id: number,
+  customer: Customer
+): Promise<Customer> => {
+  const response = await axios.put<Customer>(`${API_URL}/${id}`, customer);
+  return response.data;
+};
+
+// Eliminar un cliente
 export const deleteCustomerById = async (id: number): Promise<void> => {
   await axios.delete(`${API_URL}/${id}`);
 };
