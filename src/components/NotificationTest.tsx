@@ -1,4 +1,3 @@
-// src/components/NotificationTest.tsx
 import React from "react";
 import { showNotification } from "../services/NotificationService";
 import { motion } from "framer-motion";

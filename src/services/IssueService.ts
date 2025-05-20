@@ -1,4 +1,3 @@
-// src/services/IssueService.ts
 import { Issue } from "../models/Issue";
 
 const API_URL = "http://localhost:5000/issues"; // Cambia si tu API usa otro puerto o ruta base

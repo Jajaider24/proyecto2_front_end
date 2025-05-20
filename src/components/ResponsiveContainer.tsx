@@ -1,4 +1,3 @@
-// src/components/ResponsiveContainer.tsx
 import React from "react";
 
 const ResponsiveContainer: React.FC = () => {

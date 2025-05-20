@@ -1,4 +1,3 @@
-// src/components/AuthProvider.tsx
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { setAuthToken, removeAuthToken } from "../services/AuthService";

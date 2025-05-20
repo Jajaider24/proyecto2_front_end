@@ -1,5 +1,3 @@
-// src/pages/Issue/IssueList.tsx
-
 import { useEffect, useState } from "react";
 import { Issue } from "../../models/Issue";
 import IssueService from "../../services/IssueService";

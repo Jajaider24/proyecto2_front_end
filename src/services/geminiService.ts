@@ -1,35 +1,25 @@
-// src/services/geminiService.ts
-import axios from "axios";
+const API_KEY = "AIzaSyDCb4t20UUKOGtaFIPTE9FJ9RSrioxpHfc"; // ⚠️ Solo para pruebas
+const URL =
+  "https://generativelanguage.googleapis.com/v1beta/models/text-bison-001:generateText";
 
-// Configura tu clave de API aquí
-const API_KEY = "TU_CLAVE_DE_API_DE_GEMINI";
-
-// Configura la URL de la API de Google Gemini (Bard)
-const GEMINI_API_URL =
-  "https://api.generativeai.googleapis.com/v1beta2/text:generate";
-
-export const askGemini = async (question: string): Promise<string> => {
+export const askGemini = async (prompt: string): Promise<string> => {
   try {
-    const response = await axios.post(
-      GEMINI_API_URL,
-      {
-        prompt: question,
-        model: "gemini", // Modelo de Google Gemini (Bard)
-        max_tokens: 100, // Puedes ajustar este valor según tu necesidad
-        temperature: 0.7, // Controla la creatividad de las respuestas
+    const response = await fetch(`${URL}?key=${API_KEY}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${API_KEY}`,
-        },
-      }
-    );
+      body: JSON.stringify({
+        prompt: { text: prompt },
+        temperature: 0.7,
+        candidateCount: 1,
+      }),
+    });
 
-    // Retorna la respuesta generada por la IA
-    return response.data.choices[0].text.trim();
+    const data = await response.json();
+    return data.candidates?.[0]?.output ?? "No se pudo obtener una respuesta.";
   } catch (error) {
-    console.error("Error al consultar la API de Gemini:", error);
-    return "Hubo un problema al consultar el asistente virtual.";
+    console.error("Error consultando Gemini:", error);
+    return "Ocurrió un error al contactar al asistente.";
   }
 };

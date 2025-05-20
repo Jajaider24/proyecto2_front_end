@@ -1,4 +1,3 @@
-// src/pages/Analytics/Dashboard.tsx
 import {
   PieChart, Pie, Cell,
   BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,

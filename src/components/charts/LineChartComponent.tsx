@@ -1,4 +1,3 @@
-// src/components/Charts/LineChartComponent.tsx
 import React from "react";
 import {
   LineChart,

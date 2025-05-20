@@ -1,4 +1,3 @@
-// src/routes/index.tsx
 import React from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "../pages/Login";
@@ -20,6 +19,8 @@ import OrderForm from "../pages/Order/OrderForm";
 import OrderDetail from "../pages/Order/OrderDetail";
 import OrderList from "../pages/Order/OrderList";
 import AuthCallback from "../pages/AuthCallBack";
+import ChatBot from "../components/Chatbot";
+
 
 const AppRoutes = () => {
   return (
@@ -45,7 +46,7 @@ const AppRoutes = () => {
         <Route path="/direcciones/:id/editar" element={<AddressForm />} />
 
         {/* Rutas de Fotos */}
-        <Route path="/photo" element={<PhotoList />} />
+        <Route path="/fotos" element={<PhotoList />} />
         <Route path="/fotos/nueva" element={<PhotoForm />} />
         <Route path="/fotos/:id/editar" element={<PhotoForm />} />
         <Route path="/fotos/:id" element={<PhotoDetail />} />

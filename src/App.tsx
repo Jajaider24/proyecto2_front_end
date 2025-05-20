@@ -1,4 +1,3 @@
-// src/App.tsx
 import React from "react";
 import AuthProvider from "./components/AuthProvider";
 import AppRoutes from "./routes";

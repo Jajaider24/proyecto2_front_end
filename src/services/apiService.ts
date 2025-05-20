@@ -1,4 +1,3 @@
-// src/services/apiService.ts
 import axios, { AxiosResponse } from "axios";
 
 // Configuración básica de Axios

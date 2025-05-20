@@ -1,4 +1,3 @@
-// src/services/AuthService.ts
 import axios from "axios";
 
 // URL de tu backend (ajusta según tu servidor)

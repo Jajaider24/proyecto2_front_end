@@ -1,4 +1,3 @@
-// src/components/Chatbot.tsx
 import React, { useState } from "react";
 import { askGemini } from "../services/geminiService";
 

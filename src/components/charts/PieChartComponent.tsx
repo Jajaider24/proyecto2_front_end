@@ -1,4 +1,3 @@
-// src/components/Charts/PieChartComponent.tsx
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 

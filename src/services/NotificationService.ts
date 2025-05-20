@@ -1,4 +1,3 @@
-// src/services/NotificationService.ts
 import { toast } from "react-toastify";
 
 // Ruta del sonido de notificación
