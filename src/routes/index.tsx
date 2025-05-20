@@ -2,7 +2,7 @@
 import React from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "../pages/Login";
-import Home from "../pages/Home"; // Nueva página de inicio
+import Home from "../pages/Home";
 import CustomerList from "../pages/Customer/CustomerList";
 import CustomerForm from "../pages/Customer/CustomerForm";
 import Reports from "../pages/Reports";
@@ -19,12 +19,12 @@ import AddressList from "../pages/Address/AddressList";
 import OrderForm from "../pages/Order/OrderForm";
 import OrderDetail from "../pages/Order/OrderDetail";
 import OrderList from "../pages/Order/OrderList";
+import AuthCallback from "../pages/AuthCallBack";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Página de Inicio */}
         <Route path="/" element={<Home />} />
 
         {/* Rutas de Clientes */}
@@ -45,7 +45,7 @@ const AppRoutes = () => {
         <Route path="/direcciones/:id/editar" element={<AddressForm />} />
 
         {/* Rutas de Fotos */}
-        <Route path="/fotos" element={<PhotoList />} />
+        <Route path="/photo" element={<PhotoList />} />
         <Route path="/fotos/nueva" element={<PhotoForm />} />
         <Route path="/fotos/:id/editar" element={<PhotoForm />} />
         <Route path="/fotos/:id" element={<PhotoDetail />} />
@@ -64,6 +64,7 @@ const AppRoutes = () => {
 
         {/* Ruta de Login */}
         <Route path="/login" element={<Login />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
 
         {/* Redirección en caso de ruta no encontrada */}
         <Route path="*" element={<Navigate to="/" />} />

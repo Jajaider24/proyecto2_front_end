@@ -4,6 +4,7 @@ import { AuthContext } from "../components/AuthProvider";
 import { motion } from "framer-motion";
 import { FaGithub, FaMicrosoft, FaGoogle } from "react-icons/fa";
 
+
 const Login: React.FC = () => {
   const auth = useContext(AuthContext);
 

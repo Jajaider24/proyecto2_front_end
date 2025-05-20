@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Photo } from '../models/Photo';
 
-const API_URL = 'http://localhost:3000/photos'; // Ajusta la URL según tu backend
+const API_URL = 'http://localhost:5000/photos'; // Ajusta la URL según tu backend
 
 const PhotoService = {
   getAll: async (): Promise<Photo[]> => {

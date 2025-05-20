@@ -1,7 +1,7 @@
 import { User } from "../models/User";
 import { apiService } from "./apiService";
 
-const API_URL = "users";
+const API_URL = "http://localhost:5000/users";
 
 export const getUsers = () => apiService.get<User[]>(API_URL);
 export const getUserById = (id: number) =>

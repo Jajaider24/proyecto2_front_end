@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // URL de tu backend (ajusta según tu servidor)
-const BACKEND_API_URL = "http://localhost:3000";
+const BACKEND_API_URL = "http://localhost:5000";
 
 // Guardar Token en LocalStorage
 export const setAuthToken = (token: string) => {

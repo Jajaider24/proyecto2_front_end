@@ -6,12 +6,31 @@ import { Photo } from "../../models/Photo";
 const PhotoDetail = () => {
   const { id } = useParams();
   const [photo, setPhoto] = useState<Photo | null>(null);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
+    const fetchPhoto = async () => {
+      try {
+        const data = await PhotoService.getById(Number(id));
+        setPhoto(data);
+      } catch (err) {
+        console.error("Error al obtener la foto:", err);
+        setError("No se encontró la foto solicitada.");
+      }
+    };
+
     if (id) {
-      PhotoService.getById(Number(id)).then(setPhoto);
+      fetchPhoto();
     }
   }, [id]);
+
+  if (error) {
+    return (
+      <div className="p-6 text-red-600 font-semibold">
+        {error}
+      </div>
+    );
+  }
 
   if (!photo) return <div className="p-6">Cargando...</div>;
 
@@ -21,9 +40,14 @@ const PhotoDetail = () => {
       <p><strong>ID:</strong> {photo.id}</p>
       <p><strong>URL Imagen:</strong> {photo.image_url}</p>
       <p><strong>Leyenda:</strong> {photo.caption}</p>
-      <p><strong>Fecha:</strong> {photo.taken_at}</p>
+      <p><strong>Fecha:</strong> {photo.taken_at.split("T")[0]}</p>
       <p><strong>ID Asunto:</strong> {photo.issue_id}</p>
-      <img src={photo.image_url} alt={photo.caption} className="mt-4 w-64 h-auto rounded shadow" />
+      <img
+        src={photo.image_url}
+        alt={photo.caption}
+        className="mt-4 w-64 h-auto rounded shadow"
+        onError={(e) => (e.currentTarget.src = "/placeholder.jpg")}
+      />
     </div>
   );
 };

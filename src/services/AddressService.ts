@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Address } from '../models/Address';
 
-const API_URL = 'http://localhost:3000/addresses'; // Ajusta si tu backend usa otro endpoint
+const API_URL = "http://localhost:5000/addresses"; // Ajusta si tu backend usa otro endpoint
 
 const AddressService = {
   getAll: async (): Promise<Address[]> => {

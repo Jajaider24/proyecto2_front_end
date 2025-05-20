@@ -1,7 +1,7 @@
 import { Motorcycle } from "../models/Motorcycle";
 import { apiService } from "./apiService";
 
-const API_URL = "motorcycles";
+const API_URL = "http://localhost:5000/motorcycles";
 
 export const getMotorcycles = () => apiService.get<Motorcycle[]>(API_URL);
 export const getMotorcycleById = (id: number) =>

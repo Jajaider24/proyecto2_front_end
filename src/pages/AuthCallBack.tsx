@@ -20,16 +20,19 @@ const AuthCallback: React.FC = () => {
   const fetchAccessToken = async (code: string, provider: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/auth/callback?code=${code}&provider=${provider}`
+        `http://localhost:5000/auth/${provider}/callback?code=${code}`
       );
+
       const { token } = response.data;
       localStorage.setItem("authToken", token);
       auth?.loginWithGoogle({ credential: token });
       navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
+      navigate("/login");
     }
   };
+  
 
   return <div>Cargando...</div>;
 };

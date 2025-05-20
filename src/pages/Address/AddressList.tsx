@@ -27,7 +27,7 @@ const AddressList = () => {
             <th className="p-2 border">ID</th>
             <th className="p-2 border">Calle</th>
             <th className="p-2 border">Ciudad</th>
-            <th className="p-2 border">Estado</th>
+            <th className="p-2 border">Departamento</th>
             <th className="p-2 border">Código Postal</th>
             <th className="p-2 border">Información Adicional</th>
             <th className="p-2 border">Orden ID</th>

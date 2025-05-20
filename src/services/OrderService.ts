@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Order } from '../models/Order';
 
-const API_URL = 'http://localhost:3000/orders'; // Ajusta la URL a tu backend
+const API_URL = 'http://localhost:5000/orders'; // Ajusta la URL a tu backend
 
 const getOrders = async (): Promise<Order[]> => {
   const response = await axios.get(API_URL);

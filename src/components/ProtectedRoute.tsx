@@ -1,13 +1,9 @@
 // src/components/ProtectedRoute.tsx
 import React, { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-}
-
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedRoute: React.FC = () => {
   const auth = useContext(AuthContext);
 
   if (!auth?.user) {
@@ -15,8 +11,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // Si el usuario está autenticado, renderizar la ruta protegida
-  return <>{children}</>;
+  // Si el usuario está autenticado, renderizar las rutas protegidas
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

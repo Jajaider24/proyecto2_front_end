@@ -1,5 +1,4 @@
-// src/pages/OrderList.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import {
   showNotification,
@@ -13,6 +12,9 @@ const OrderList: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
+  // 🔁 Referencia para guardar los IDs ya notificados
+  const notifiedOrderIds = useRef<number[]>([]);
+
   useEffect(() => {
     fetchOrders();
     const interval = setInterval(fetchOrders, 30000);
@@ -22,19 +24,21 @@ const OrderList: React.FC = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/orders");
+      const response = await axios.get("http://localhost:5000/orders");
       const fetchedOrders = response.data;
 
       if (Array.isArray(fetchedOrders)) {
         setOrders(fetchedOrders);
         setError("");
 
-        // Notificar nuevos pedidos asignados
+        // Notificar solo los nuevos pedidos asignados a motociclistas
         fetchedOrders.forEach((order: any) => {
-          if (order.assignedTo) {
-            showNotification(
-              `🚀 ¡Nuevo pedido asignado a ${order.assignedTo.name}!`
-            );
+          const alreadyNotified = notifiedOrderIds.current.includes(order.id);
+          const isAssigned = order.assignedTo || order.motorcycle_id;
+
+          if (isAssigned && !alreadyNotified) {
+            showNotification(`🛵 ¡Pedido #${order.id} asignado!`);
+            notifiedOrderIds.current.push(order.id);
           }
         });
       } else {
@@ -54,7 +58,7 @@ const OrderList: React.FC = () => {
   const deleteOrder = async (id: number) => {
     if (window.confirm("¿Estás seguro de que deseas eliminar esta orden?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/orders/${id}`);
+        await axios.delete(`http://localhost:5000/orders/${id}`);
         setOrders(orders.filter((order) => order.id !== id));
         showNotification("🚮 ¡Orden eliminada correctamente!");
       } catch (err) {

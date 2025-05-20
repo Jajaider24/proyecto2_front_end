@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Customer } from "../models/Customer";
 
 // URL base del API (ajusta con tu URL de backend)
-const API_URL = "http://localhost:5000/api/customers";
+const API_URL = "http://localhost:5000/customers";
 
 // Obtener todos los clientes
 export const getAllCustomers = async (): Promise<Customer[]> => {
@@ -30,6 +30,7 @@ export const updateCustomer = async (
   const response = await axios.put<Customer>(`${API_URL}/${id}`, customer);
   return response.data;
 };
+
 
 // Eliminar un cliente
 export const deleteCustomerById = async (id: number): Promise<void> => {

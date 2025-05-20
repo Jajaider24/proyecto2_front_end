@@ -1,7 +1,7 @@
 import { Driver } from "../models/Driver";
 import { apiService } from "./apiService";
 
-const API_URL = "drivers";
+const API_URL = "http://localhost:5000/drivers";
 
 export const getDrivers = () => apiService.get<Driver[]>(API_URL);
 export const getDriverById = (id: number) =>

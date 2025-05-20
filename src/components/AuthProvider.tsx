@@ -1,3 +1,4 @@
+// src/components/AuthProvider.tsx
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { setAuthToken, removeAuthToken } from "../services/AuthService";
@@ -22,16 +23,39 @@ const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     }
   }, []);
 
-  const fetchUserProfile = async (token: string) => {
+  // ✅ Utiliza el ID Token de Google directamente
+  const loginWithGoogle = async (response: any) => {
     try {
+      const idToken = response.credential;
+      console.log("Recibido Token de Google:", idToken);
+
+      // Guardar el ID Token directamente como token de autenticación
+      localStorage.setItem("authToken", idToken);
+      setAuthToken(idToken);
+
+      // Obtener el perfil del usuario con el ID Token
+      await fetchUserProfile(idToken);
+    } catch (error) {
+      console.error("Error en el login con Google:", error);
+      logout();
+    }
+  };
+
+  // ✅ Obtiene el perfil del usuario utilizando el ID Token
+  const fetchUserProfile = async (idToken: string) => {
+    try {
+      console.log("Obteniendo perfil del usuario con el ID Token...");
+
       const response = await axios.get(
         "https://www.googleapis.com/oauth2/v3/userinfo",
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${idToken}`,
           },
         }
       );
+
+      console.log("Perfil del usuario:", response.data);
       setUser(response.data);
     } catch (error) {
       console.error("Error al obtener el perfil del usuario:", error);
@@ -39,14 +63,8 @@ const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     }
   };
 
-  const loginWithGoogle = (response: any) => {
-    const token = response.credential;
-    setAuthToken(token);
-    localStorage.setItem("authToken", token);
-    fetchUserProfile(token);
-  };
-
   const logout = () => {
+    console.log("Cerrando sesión...");
     removeAuthToken();
     localStorage.removeItem("authToken");
     setUser(null);

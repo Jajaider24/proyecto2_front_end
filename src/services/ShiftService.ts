@@ -1,7 +1,7 @@
 import { Shift } from "../models/Shift";
 import { apiService } from "./apiService";
 
-const API_URL = "shifts";
+const API_URL = "http://localhost:5000/shifts";
 
 export const getShifts = () => apiService.get<Shift[]>(API_URL);
 export const getShiftById = (id: number) =>

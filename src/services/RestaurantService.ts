@@ -1,7 +1,7 @@
 import { Restaurant } from "../models/Restaurant";
 import { apiService } from "./apiService";
 
-const API_URL = "restaurants";
+const API_URL = "http://localhost:5000/restaurants";
 
 export const getRestaurants = () => apiService.get<Restaurant[]>(API_URL);
 export const getRestaurantById = (id: number) =>

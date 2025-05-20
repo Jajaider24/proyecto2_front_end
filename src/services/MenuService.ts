@@ -1,7 +1,7 @@
 import { Menu } from "../models/Menu";
 import { apiService } from "./apiService";
 
-const API_URL = "menus";
+const API_URL = "http://localhost:5000/menus";
 
 export const getMenus = () => apiService.get<Menu[]>(API_URL);
 export const getMenuById = (id: number) =>
